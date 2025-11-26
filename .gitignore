@@ -1,0 +1,30 @@
+# Archivos CSV de datos reales (mantener solo test-data-*.csv)
+ppj.csv
+afiliadosMap.csv
+3feb.csv
+*.csv
+!test-data-*.csv
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Temporales
+tmp/
+temp/
+*.tmp
+
+# Backups
+*.bak
+*.backup
