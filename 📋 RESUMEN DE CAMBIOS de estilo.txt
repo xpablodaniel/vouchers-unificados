@@ -1,0 +1,46 @@
+📋 RESUMEN DE CAMBIOS (30/11/2025)
+Objetivo: Reducir ~30% la sección de casillas para equilibrar con datos del voucher y permitir 4 vouchers por página A4.
+
+✏️ Clases modificadas:
+.check-boxes-grid (contenedor principal)
+
+gap: 30px → 20px
+padding: 15px 0 → 8px 0
+.meal-section (sección Almuerzo/Cena)
+
+gap: 8px → 4px
+.meal-title (títulos "Almuerzo"/"Cena")
+
+font-size: 15px → 10px
+margin-bottom: 5px → 2px
+.days-grid (contenedor de días)
+
+gap: 12px → 8px
+.day-box (cada día individual)
+
+gap: 5px → 3px
+.day-label (texto "Día 1", "Día 2", etc.)
+
+font-size: 12px → 8px
+.checkbox (casillas de tildado)
+
+width/height: 20px → 14px
+border: 2px → 1px
+border-radius: 3px → 2px
+🖨️ Sección @media print:
+.container
+
+margin: 10mm → 5mm
+.checkbox (en impresión)
+
+width/height: 24px → 16px
+border: 3px → 1.5px
+.day-label (en impresión)
+
+font-size: 14px → 9px
+.meal-title (en impresión)
+
+font-size: 16px → 11px
+.check-box span (en impresión)
+
+font-size: 16px → 11px
