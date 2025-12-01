@@ -3,71 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Vouchers Unificado</title>
+    <title>Herramientas SUTEBA - Gestión Hotelera</title>
     <link rel="stylesheet" href="src/styles.css">
+    <style>
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            gap: 30px;
+        }
+
+        .menu-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px 40px;
+            width: 400px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-card h2 {
+            color: #007bff;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .menu-card p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .menu-card .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .menu-button {
+            padding: 12px 24px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .menu-button:hover {
+            background-color: #0056b3;
+        }
+
+        .menu-button.secondary {
+            background-color: #28a745;
+        }
+
+        .menu-button.secondary:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
     <div class="header-container">
         <div class="logo-initial">
-            <img src="assets/suteba_logo_3.jpg" alt="Logo" style="width: 100px;">
+            <img src="assets/suteba_logo_3.jpg" alt="Logo SUTEBA" style="width: 100px;">
         </div>
-        <h1 class="h1-initial">Generador de Vouchers Unificado</h1>
-        <h2 class="h2-initial">Media Pensión (MAP) | Pensión Completa (PC)</h2>
-        
-        <!-- Toggle de modo -->
-        <div class="mode-toggle">
-            <button onclick="toggleMode('MAP')" class="mode-btn" id="btn-map">MAP (Cena)</button>
-            <button onclick="toggleMode('PC')" class="mode-btn active" id="btn-pc">PC (Almuerzo + Cena)</button>
+        <h1 class="h1-initial">Herramientas de Gestión Hotelera</h1>
+        <h2 class="h2-initial">Sistema Unificado SUTEBA</h2>
+    </div>
+
+    <div class="menu-container">
+        <div class="menu-card" onclick="window.location.href='vouchers.html'">
+            <div class="icon">🎫</div>
+            <h2>Generador de Vouchers</h2>
+            <p>Procesa archivos CSV y genera vouchers de comidas para Media Pensión (MAP) y Pensión Completa (PC)</p>
+            <a href="vouchers.html" class="menu-button">Acceder</a>
         </div>
-        
-        <div id="mode-indicator" class="mode-indicator">Modo actual: PC</div>
-        
-        <!-- Botón de carga de CSV -->
-        <div class="button-upload">
-            <button class="upload-button" onclick="handleFileSelect()">
-                <span>📁</span>
-                Cargar Archivo CSV
-            </button>
+
+        <div class="menu-card" onclick="window.location.href='rooming.html'">
+            <div class="icon">📋</div>
+            <h2>Procesador de Reservas</h2>
+            <p>Organiza y procesa datos de rooming list, ordena por habitación y genera reportes de reservas</p>
+            <a href="rooming.html" class="menu-button secondary">Acceder</a>
         </div>
     </div>
 
-    <div id="resultContainer">
-        <div id="resultOutput"></div>
-        <div id="noDataMessage" style="display: none; text-align: center; margin: 20px; font-size: 25px; font-weight: bold; color: rgb(167, 50, 50);">
-            No hay datos con el servicio seleccionado
-        </div>
-        
-        <div class="print-buttons-container">
-            <button class="print-button" onclick="printContent()">
-                <span>🖨️</span> Imprimir
-            </button>
-        </div>
+    <div style="text-align: center; margin: 40px 0; color: #666; font-size: 14px;">
+        <p>Sistema de gestión hotelera - SUTEBA © 2025</p>
     </div>
-
-    <!-- Scripts -->
-    <script src="src/lib/parser.js"></script>
-    <script src="src/lib/business.js"></script>
-    <script src="src/lib/render.js"></script>
-    <script src="src/app.js"></script>
-    
-    <script>
-        // Actualizar estilos de botones al cambiar modo
-        function toggleMode(newMode) {
-            APP_CONFIG.mode = newMode;
-            document.getElementById('mode-indicator').textContent = `Modo actual: ${newMode}`;
-            
-            // Actualizar botones activos
-            document.getElementById('btn-map').classList.remove('active');
-            document.getElementById('btn-pc').classList.remove('active');
-            document.getElementById(`btn-${newMode.toLowerCase()}`).classList.add('active');
-            
-            // Re-render si ya hay datos cargados
-            if (relevantData.length > 0) {
-                const resultOutput = document.getElementById('resultOutput');
-                resultOutput.innerHTML = relevantDataToForm(relevantData, APP_CONFIG);
-                document.getElementById('noDataMessage').style.display = 'none';
-            }
-        }
-    </script>
 </body>
 </html>
