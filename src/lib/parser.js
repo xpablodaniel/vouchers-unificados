@@ -34,22 +34,17 @@ function parseCSV(fileContents) {
         plazasOcupadas: fields[10],
         tipoDoc: fields[11],
         dni: fields[12],
-        nombreCompleto: (fields[13] || '').trim(), // Nombre y apellido juntos
+        nombreCompleto: (fields[13] || '').trim().toUpperCase(), // Nombre completo tal cual del CSV en mayúsculas
         edad: fields[14],
         entidad: fields[15],
         servicios: fields[16],
         paquete: fields[17],
         transporte: fields[18]
       };
-      // Separar nombreCompleto en nombre y apellido para normalización
-      const nombreParts = parsed.nombreCompleto.split(' ');
-      if (nombreParts.length >= 2) {
-        parsed.apellido = nombreParts[0]; // Primer palabra = apellido
-        parsed.nombre = nombreParts.slice(1).join(' '); // Resto = nombre
-      } else {
-        parsed.nombre = parsed.nombreCompleto;
-        parsed.apellido = '';
-      }
+      
+      // Usar el nombre completo sin separación
+      parsed.nombre = parsed.nombreCompleto;
+      parsed.apellido = '';
     } else {
       // Formato CSV antiguo (pruebas_ppj.csv) - nombre y apellido separados
       // Corrección de CSV roto (campo Observación con comas extras)
